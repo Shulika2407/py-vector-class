@@ -12,7 +12,7 @@ class Vector:
     def __sub__(self, other: "Vector") -> "Vector":
         return Vector(self.x - other.x, self.y - other.y)
 
-    def __mul__(self, other: "Vector"):
+    def __mul__(self, other: "Vector") -> any:
         if isinstance(other, (int, float)):
             return Vector(self.x * other, self.y * other)
         elif isinstance(other, Vector):
@@ -57,6 +57,8 @@ class Vector:
 
     def rotate(self, degrees: int) -> "Vector":
         radians = math.radians(degrees)
-        new_x = self.x * math.cos(radians) - self.y * math.sin(radians)
-        new_y = self.x * math.sin(radians) + self.y * math.cos(radians)
+        new_x = (self.x * math.cos(radians)
+                 - self.y * math.sin(radians))
+        new_y = (self.x * math.sin(radians)
+                 + self.y * math.cos(radians))
         return Vector(new_x, new_y)
